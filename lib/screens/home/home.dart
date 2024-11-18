@@ -23,13 +23,11 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
-    
 
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: 0,
-        onTap: (index) {
-        },
+        onTap: (index) {},
       ),
       body: Consumer<ProductProvider>(
         builder: (context, productProvider, child) {
@@ -157,7 +155,7 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
+                    children: [
                       Text(
                         "The Ultimate",
                         style: TextStyle(
@@ -188,7 +186,7 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                  height: 322.0,
+                    height: screenHeight * 0.45,
                   width: double.infinity,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -200,8 +198,7 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                         child: ProductCard(
                           product: product,
                           isFavorite: false,
-                          onFavoriteToggle: () {
-                          },
+                          onFavoriteToggle: () {},
                           onTap: () {
                             Navigator.push(
                               context,

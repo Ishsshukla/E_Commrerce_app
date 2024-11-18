@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:bts_assignment/constants/app_fonts.dart';
 import 'package:bts_assignment/widgets/appbar.dart';
+import 'package:bts_assignment/widgets/future.icon.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -239,7 +240,7 @@ class _ProductDetailsScreen2State extends State<ProductDetailsScreen2> {
                                         color: Colors.grey[800],
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  SizedBox(width: screenWidth * 0.34),
+                                  SizedBox(width: screenWidth * 0.33),
                                   Text(
                                     "show more",
                                     style: TextStyle(
@@ -291,24 +292,4 @@ class _ProductDetailsScreen2State extends State<ProductDetailsScreen2> {
   }
 }
 
-class FeatureIcon extends StatelessWidget {
-  final IconData icon;
-  final String label;
 
-  const FeatureIcon({Key? key, required this.icon, required this.label})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, size: 28),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12),
-        ),
-      ],
-    );
-  }
-}
