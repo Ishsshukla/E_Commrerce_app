@@ -1,32 +1,32 @@
-import 'package:bts_assignment/screens/home/product_listing_screen.dart';
+import 'package:bts_assignment/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/product_provider.dart';
-// import 'screens/product_listing_screen.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        // ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => SomeViewModel()),
+        // Add more providers as needed
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class SomeViewModel extends ChangeNotifier {
+  // Your ViewModel logic here
+}
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Product App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: const ProductListingScreen(),
+      title: 'Flutter Demo',
+      home: Home(),
     );
   }
 }
+
+
+

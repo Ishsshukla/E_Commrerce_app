@@ -1,171 +1,300 @@
-// import 'package:bts_assignment/providers/product_provider.dart';
-// import 'package:bts_assignment/widgets/navbar/navbar.dart';
-// import 'package:bts_assignment/widgets/product_card.dart';
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
 
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/bg.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
 
-// class _HomePageState extends State<HomePage> {
-//   int _selectedIndex = 0;
+          // White Container with Curved Top
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(62.0),
+                  // topRight: Radius.circular(32.0),
+                ),
+              ),
+              child: const Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.35,
+            left: 0,
+            right: 0,
+            // bottom:100,
+            top: -350,
+            child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Profile Section
+                  const Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: const Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 20.0,
+                          backgroundImage: AssetImage(
+                            'assets/profile.jpg', // Replace with profile image path
+                          ),
+                        ),
+                        SizedBox(width: 20.0),
+                        Text(
+                          "Paul Martine",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-//   void _onItemTapped(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
+                  // Icons
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {},
+                      ),
+                      Stack(
+                        children: [
+                          IconButton(
+                            icon: Container(
+                              width: 40.0,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: const Icon(
+                                Icons.shopping_cart_outlined,
+                                color: Colors.black,
+                              ),
+                            ),
+                            onPressed: () {},
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Container(
+                              padding: const EdgeInsets.all(4.0),
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Text(
+                                "2",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final productProvider = Provider.of<ProductProvider>(context);
+          // Horizontal Scrollable Cards
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.35,
+            left: 0,
+            right: 0,
+            child: SizedBox(
+              height: 200.0,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Container(
+                      width: 150.0,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            blurRadius: 10.0,
+                            offset: const Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
+                              ),
+                              child: Image.asset(
+                                'assets/bg.jpg', // Replace with your image path
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "\$34.00",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                SizedBox(height: 4.0),
+                                Text(
+                                  "Stripe Details Jersey\nTrack Top",
+                                  style: TextStyle(fontSize: 14.0),
+                                ),
+                                SizedBox(height: 4.0),
+                                Text(
+                                  "Men's shoes",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
 
-//     return Scaffold(
-//       body: Column(
-//         children: [
-//           // App Bar
-//           Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                const Row(
-//                   children: [
-//                     const CircleAvatar(
-//                       backgroundImage: NetworkImage(
-//                         'https://i.pravatar.cc/150?img=3', // Replace with user's profile image URL
-//                       ),
-//                       radius: 24,
-//                     ),
-//                     const SizedBox(width: 12),
-//                     Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: const [
-//                         Text(
-//                           'Paul Martine',
-//                           style: TextStyle(
-//                             fontSize: 16,
-//                             fontWeight: FontWeight.bold,
-//                           ),
-//                         ),
-//                         Text(
-//                           'Premium',
-//                           style: TextStyle(
-//                             fontSize: 14,
-//                             color: Colors.grey,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//                 Stack(
-//                   children: [
-//                     IconButton(
-//                       icon: const Icon(
-//                         Icons.shopping_cart_outlined,
-//                         size: 28,
-//                       ),
-//                       onPressed: () {},
-//                     ),
-//                     Positioned(
-//                       right: 4,
-//                       top: 4,
-//                       child: Container(
-//                         padding: const EdgeInsets.all(4),
-//                         decoration: const BoxDecoration(
-//                           color: Colors.red,
-//                           shape: BoxShape.circle,
-//                         ),
-//                         child: const Text(
-//                           '02',
-//                           style: TextStyle(
-//                             fontSize: 12,
-//                             color: Colors.white,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-//           // Hero Section
-//           Stack(
-//             children: [
-//               Container(
-//                 height: 200,
-//                 width: double.infinity,
-//                 decoration: BoxDecoration(
-//                   image: const DecorationImage(
-//                     image: NetworkImage('https://i.pravatar.cc/150?img=3'), // Replace with your network image URL
-//                     fit: BoxFit.cover,
-//                   ),
-//                   borderRadius: BorderRadius.circular(16),
-//                 ),
-//               ),
-//               const Positioned(
-//                 bottom: 16,
-//                 left: 16,
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       'The Ultimate Collection',
-//                       style: TextStyle(
-//                         fontSize: 24,
-//                         fontWeight: FontWeight.bold,
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                     Text(
-//                       'Step into style',
-//                       style: TextStyle(
-//                         fontSize: 16,
-//                         color: Colors.white70,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//           const SizedBox(height: 16),
-//           // Product Grid
-//           Expanded(
-//             child: productProvider.isLoading
-//                 ? const Center(child: CircularProgressIndicator())
-//                 : GridView.builder(
-//                     padding: const EdgeInsets.symmetric(horizontal: 16),
-//                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//                       crossAxisCount: 2,
-//                       crossAxisSpacing: 16,
-//                       mainAxisSpacing: 16,
-//                       childAspectRatio: 3 / 4,
-//                     ),
-//                     itemCount: productProvider.products.length,
-//                 itemBuilder: (context, index) {
-//                   final product = productProvider.products[index];
-                  
-// return ProductCard(
-//                   id: product.id,
-//                   title: product.title,
-//                   description: product.description,
-//                   price: product.price,
-//                   imageUrl: product.imageUrl,
-//                   category: product.category,
-//                 ) as Widget;
-//                 },
-//                   ),
-//           ),
-//         ],
-//       ),
-//       bottomNavigationBar: CustomBottomNavBar(selectedIndex: 0, onTap: _onItemTapped)
-//     );
-//   }
-// }
+          // Profile and Icons at the Top
+          // SafeArea(
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(16.0),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         // Profile Section
+          //         const Row(
+          //           children: [
+          //             CircleAvatar(
+          //               radius: 20.0,
+          //               backgroundImage: AssetImage(
+          //                 'assets/profile.jpg', // Replace with profile image path
+          //               ),
+          //             ),
+          //             SizedBox(width: 8.0),
+          //             Column(
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: const [
+          //                 Text(
+          //                   "Paul Martine",
+          //                   style: TextStyle(
+          //                     color: Colors.white,
+          //                     fontWeight: FontWeight.bold,
+          //                     fontSize: 16.0,
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   "Premium",
+          //                   style: TextStyle(
+          //                     color: Colors.white70,
+          //                     fontSize: 14.0,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ],
+          //         ),
+
+          //         // Icons
+          //         Row(
+          //           children: [
+          //             IconButton(
+          //               icon: const Icon(
+          //                 Icons.favorite_border,
+          //                 color: Colors.white,
+          //               ),
+          //               onPressed: () {},
+          //             ),
+          //             Stack(
+          //               children: [
+          //                 IconButton(
+          //                   icon: const Icon(
+          //                     Icons.shopping_cart_outlined,
+          //                     color: Colors.white,
+          //                   ),
+          //                   onPressed: () {},
+          //                 ),
+          //                 Positioned(
+          //                   right: 8,
+          //                   bottom: 29,
+          //                   // bottom: 20,
+          //                   child: Container(
+          //                     padding: const EdgeInsets.all(4.0),
+          //                     decoration: const BoxDecoration(
+          //                       color: Colors.red,
+          //                       shape: BoxShape.circle,
+          //                     ),
+          //                     child: const Text(
+          //                       "2",
+          //                       style: TextStyle(
+          //                         color: Colors.white,
+          //                         fontSize: 12.0,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+}
