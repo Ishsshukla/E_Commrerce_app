@@ -12,8 +12,13 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final padding = mediaQuery.size.height * 0.02;
+    final iconSize = mediaQuery.size.width * 0.06;
+    final textSize = mediaQuery.size.width * 0.03;
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: EdgeInsets.symmetric(vertical: padding),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
@@ -29,18 +34,18 @@ class CustomBottomNavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildNavItem(0, Icons.home_filled, 'Home'),
-          _buildNavItem(1, Icons.shopping_bag_outlined, 'Explore'),
-          _buildNavItem(2, Icons.favorite_border_outlined, 'Favourite'),
-          _buildNavItem(3, Icons.inventory_2_outlined, 'Orders'),
+          _buildNavItem(0, Icons.home_filled, 'Home', iconSize, textSize),
+          _buildNavItem(1, Icons.shopping_bag_outlined, 'Explore', iconSize, textSize),
+          _buildNavItem(2, Icons.favorite_border_outlined, 'Favourite', iconSize, textSize),
+          _buildNavItem(3, Icons.inventory_2_outlined, 'Orders', iconSize, textSize),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label) {
+  Widget _buildNavItem(int index, IconData icon, String label, double iconSize, double textSize) {
     final isSelected = selectedIndex == index;
-    
+
     return GestureDetector(
       onTap: () => onTap(index),
       behavior: HitTestBehavior.opaque,
@@ -51,14 +56,14 @@ class CustomBottomNavBar extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 24,
+              size: iconSize,
               color: isSelected ? Colors.black : Colors.grey[400],
             ),
             const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: textSize,
                 color: isSelected ? Colors.black : Colors.grey[400],
                 fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
               ),
@@ -79,4 +84,3 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 }
-

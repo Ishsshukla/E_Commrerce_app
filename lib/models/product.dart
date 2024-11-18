@@ -2,42 +2,81 @@ class Product {
   final int id;
   final String title;
   final String description;
-  final double price;
-  final String imageUrl;
   final String category;
+  final double price;
+  final double discountPercentage;
+  final double rating;
+  final int stock;
+  final String brand;
+  final String sku;
+  final String imageUrl;
+  final String thumbnail;
 
   Product({
     required this.id,
     required this.title,
     required this.description,
-    required this.price,
-    required this.imageUrl,
     required this.category,
+    required this.price,
+    required this.discountPercentage,
+    required this.rating,
+    required this.stock,
+    required this.brand,
+    required this.sku,
+    required this.imageUrl,
+    required this.thumbnail,
   });
 
-  // Convert Product to Map for SQLite
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      category: json['category'],
+      price: json['price']?.toDouble() ?? 0.0,
+      discountPercentage: json['discountPercentage']?.toDouble() ?? 0.0,
+      rating: json['rating']?.toDouble() ?? 0.0,
+      stock: json['stock'] ?? 0,
+      brand: json['brand'],
+      sku: json['sku'],
+      imageUrl: (json['images'] as List).isNotEmpty ? json['images'][0] : '',
+      thumbnail: json['thumbnail'] ?? '',
+    );
+  }
+
+ 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'description': description,
-      'price': price,
-      'imageUrl': imageUrl,
       'category': category,
+      'price': price,
+      'discountPercentage': discountPercentage,
+      'rating': rating,
+      'stock': stock,
+      'brand': brand,
+      'sku': sku,
+      'imageUrl': imageUrl,
+      'thumbnail': thumbnail,
     };
   }
 
-  // Convert Map from SQLite to Product
+
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       id: map['id'],
       title: map['title'],
       description: map['description'],
-      price: map['price'],
-      imageUrl: map['imageUrl'],
       category: map['category'],
+      price: map['price'],
+      discountPercentage: map['discountPercentage'],
+      rating: map['rating'],
+      stock: map['stock'],
+      brand: map['brand'],
+      sku: map['sku'],
+      imageUrl: map['imageUrl'],
+      thumbnail: map['thumbnail'],
     );
   }
-
-  static fromJson(json) {}
 }
